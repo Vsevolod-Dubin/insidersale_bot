@@ -4,7 +4,7 @@ __pycache__/
 *.log
 
 # SQLite
-*.sqlite3
+# *.sqlite3
 
 # Virtual environments
 env/
@@ -25,7 +25,6 @@ Thumbs.db
 
 __pycache__/
 *.pyc
-*.sqlite3
 .env
 venv/
 env/
