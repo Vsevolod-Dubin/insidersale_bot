@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")  # fallback по умолчанию
 
 import django
 django.setup()
@@ -131,7 +132,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         try:
-            response = requests.post("http://127.0.0.1:8000/api/interaction/", json=payload)
+            response = requests.post(f"{API_URL}/api/interaction/", json=payload)
             response.raise_for_status()
             data = response.json()
 
