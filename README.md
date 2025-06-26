@@ -17,11 +17,9 @@ A Django-powered Telegram bot that helps assistants sell an online course using 
 - Django 4.2+
 - python-telegram-bot
 - OpenAI API
-- SQLite (with optional Persistent Disk support on Render)
+- SQLite (with optional Persistent Disk)
 
-## 🚀 Deployment
-
-The project is designed to be deployed on [Render.com](https://render.com). No PostgreSQL or webhook setup required.
+Both the Django server and Telegram bot are run in a single process using `serve_and_run_bot.py`.
 
 ### How to run locally
 
@@ -33,7 +31,7 @@ source env/bin/activate  # or .\env\Scripts\activate on Windows
 pip install -r requirements.txt
 cp .env.example .env     # create and edit your .env file
 python manage.py migrate
-python -m bot.bot_main   # starts polling Telegram bot
+python serve_and_run_bot.py  # runs both Django and the bot together
 ```
 
 ## 📁 Project Structure
@@ -44,6 +42,7 @@ insidersale_bot/
 ├── bot/               # Telegram bot logic (handlers, OpenAI, etc.)
 ├── core/              # Django core settings and URLs
 ├── templates/         # (optional) Templates for admin customization
+├── serve_and_run_bot.py  # Script to run Django and the bot together
 ├── db.sqlite3         # Local database
 ├── .env               # Environment variables (Telegram token, OpenAI key)
 ├── requirements.txt   # Project dependencies
@@ -74,12 +73,11 @@ Telegram-бот на Django, помогающий ассистентам про�
 - Django 4.2+
 - python-telegram-bot
 - OpenAI API
-- SQLite (с возможностью подключения Persistent Disk на Render)
+- SQLite (с возможностью подключения Persistent Disk)
 
-## 🚀 Деплой
-
-Проект предназначен для хостинга на [Render.com](https://render.com).  
 PostgreSQL и вебхуки не требуются.
+
+Бот и сервер Django запускаются одновременно через `serve_and_run_bot.py`.
 
 ### Как запустить локально
 
@@ -91,7 +89,7 @@ source env/bin/activate  # или .\env\Scripts\activate на Windows
 pip install -r requirements.txt
 cp .env.example .env     # создайте и настройте .env файл
 python manage.py migrate
-python -m bot.bot_main   # запускает Telegram-бота в режиме polling
+python serve_and_run_bot.py  # запускает и Django, и Telegram-бота вместе
 ```
 
 </details>
